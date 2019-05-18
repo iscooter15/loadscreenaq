@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+
+        /***************************************************************************************
+                 []  ,----.___
+               __||_/___      '.   ________                      ______              _________
+              / O||    /|       )  ___  __/__________________ ______  / ____________ ______  /
+             /   ""   / /   =._/   __  /  _  _ \_  ___/_  __ `__ \_  /  _  __ \  __ `/  __  /
+            /________/ /           _  /   /  __/  /   _  / / / / /  /___/ /_/ / /_/ // /_/ /
+            |________|/            /_/    \___//_/    /_/ /_/ /_//_____/\____/\__,_/ \__,_/
+            By Nerdism (https://www.gmodstore.com/scripts/view/5062
+         ***************************************************************************************/
+
+        ////////////////////////////////////////////////////////////////////////////////////////
+        //// TO TEST IN *NORMAL BROWSER* ADD "?test" TO THE END OF THE URL
+        ////////////////////////////////////////////////////////////////////////////////////////
+        var config = {
+
+            //Your server IP/port
+            server: "94.23.171.15:13010",
+
+            //Your website
+            website: "https://57alayaskeriroleplay.mistforums.com/",
+
+            //Your MOTD
+            motd: "Leaked by mami ;)",
+
+            //Your server rules
+            rules: [
+                "No RDM",
+                "No Trolling",
+                "No Ghosting",
+                "No Cheating/Exploiting/Hacking",
+                "No Meta-Gaming",
+                "No Nude/Porn/Offensive sprays",
+                "Do NOT Argue with Staff",
+                "Be Respectful"
+            ],
+
+            //Your server staff
+            staff: [
+                {
+                    name: "Owner Name",
+                    steam: "STEAM_0:1:XXXXXXXXXXX",
+                    rank: "Owner"
+                },
+                {
+                    name: "Manager Name",
+                    steam: "STEAM_0:1:XXXXXXXXXXX",
+                    rank: "Manager"
+                },
+                {
+                    name: "Admin Name",
+                    steam: "STEAM_0:1:XXXXXXXXXXX",
+                    rank: "Admin"
+                },
+                {
+                    name: "Developer Name",
+                    steam: "STEAM_0:1:XXXXXXXXXXX",
+                    rank: "Developer"
+                }
+            ],
+
+            ///////////////////////////////////////////////////////////////////////////////////////////
+            //DO NOT EDIT UNLESS YOU KNOW THE BASICS OF HTML AND JAVASCRIPT! YOU CAN AND WILL BREAK IT!
+            ///////////////////////////////////////////////////////////////////////////////////////////
+            //
+            // {DATE} Current date
+            // {USER} User steamid
+            // {GAME_NAME} Name of server
+            // {GAME_MODE} Servers gamemode
+            // {GAME_MAP} Servers map
+            // {GAME_IP} Servers ip
+            // {WEBSITE} Your website
+            // the handel must have contain "<span class='typed'>{CONTENT}</span>" the rest can be changed.
+            handle: "<pre class='cyan'>{USER}@{WEBSITE}</pre><pre>:~$ </pre><span class='typed'>{CONTENT}</span>",
+
+            //This is the text that shows at the top between "Authenticating with public key ..." and "Linux 4.4.0-89-generic SMP ..."
+            header: [
+                "<pre class='gray'>     </pre><pre class='red'>[]</pre><pre class='white'>  ,----.___</pre>",
+                "<pre class='gray'>   __||_</pre><pre class='white'>/</pre><pre class='gray'>___      </pre><pre class='white'>'.   </pre><pre class='cyan'>________                      ______              _________</pre>",
+                "<pre class='gray'>  / </pre><pre class='red'>O</pre><pre class='gray'>||    /|       </pre><pre class='white'>)  </pre><pre class='cyan'>___  __/__________________ ______  / ____________ ______  /</pre>",
+                "<pre class='gray'> /   \"\"   / /   </pre><pre class='white'>=._/   </pre><pre class='cyan'>__  /  _  _ \\_  ___/_  __ `__ \\_  /  _  __ \\  __ `/  __  / </pre>",
+                "<pre class='gray'>/________/ /           </pre><pre class='cyan'>_  /   /  __/  /   _  / / / / /  /___/ /_/ / /_/ // /_/ /  </pre>",
+                "<pre class='gray'>|________|/            </pre><pre class='cyan'>/_/    \\___//_/    /_/ /_/ /_//_____/\\____/\\__,_/ \\__,_/   </pre>"
+            ],
+
+
+            //Do not edit this! The loading screen will not load!
+            script: "5062"
+
+        };
+
+    </script>
+    <style>
+        * { margin: 0; padding: 0; }
+
+        body {
+            background-color: #1f1f1f;
+            background-image: url("logo.png"), url("background.jpg");
+            background-position: 50% 0, right top;
+            background-repeat: no-repeat, repeat;
+            font-family: monospace;
+            font-size: 14px;
+            font-style: normal;
+            font-variant: normal;
+            line-height: 18px;
+
+            overflow-x: hidden;
+            color: #fff;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        pre { float: left; }
+        ul  { list-style-type: none; }
+        ul li { float: left; min-width: 1000px; width: 100%; overflow-x: hidden; }
+
+        .termload {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: -17px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+        .terminal { margin: 10px; }
+        .status-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #000;
+            padding: 15px;
+            border: #ffffff 3px double;
+            color: #ffffff;
+            width: 400px;
+        }
+
+        .white      { color: #ffffff; }
+        .black      { color: #000000; }
+        .red        { color: #ff0000; }
+        .green      { color: #00ff00; }
+        .yellow     { color: #ffff00; }
+        .blue       { color: #0000ff; }
+        .magenta    { color: #ff00ff; }
+        .cyan       { color: #00ffff; }
+        .gray       { color: #4d4d4d; }
+        .lgray      { color: #e4e4e4; }
+        .lred       { color: #f61f17; }
+        .lgreen     { color: #34ff04; }
+        .lyellow    { color: #faff18; }
+        .lblue      { color: #496d99; }
+        .lmagenta   { color: #fb00ff; }
+        .lcyan      { color: #4dfefe; }
+
+        .map        { color: #34ff04; }
+        .particles  { color: #34ff04; }
+        .fonts      { color: #34ff04; }
+        .texture    { color: #34ff04; }
+        .models     { color: #34ff04; }
+        .sounds     { color: #34ff04; }
+
+        .typed-cursor { opacity: 1; animation: blink 0.7s infinite; }
+
+        @keyframes blink {
+            0%   { opacity:1; }
+            50%  { opacity:0; }
+            100% { opacity:1; }
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    function load(url, callback){
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        if (script.readyState){  //IE
+            script.onreadystatechange = function(){
+                if (script.readyState == "loaded" ||
+                    script.readyState == "complete"){
+                    script.onreadystatechange = null;
+                    callback();
+                }
+            };
+        } else {  //Others
+            script.onload = function(){
+                callback();
+            };
+        }
+        script.src = url;
+        document.getElementsByTagName("head")[0].appendChild(script);
+    }
+
+    var termload;
+    load("https://yoururl/loadingscreen.js?license=" + config.license, function(){
+        termload = new TermLoad(config);
+    });
+
+    function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode) {
+        if (!termload) { return }
+        termload.init({
+            name: servername,
+            game: gamemode,
+            url: serverurl,
+            map: mapname,
+            max: maxplayers,
+            steamid: steamid
+        });
+    }
+
+    function DownloadingFile(file) {
+        if (!termload) { return }
+        termload.downloading(file);
+    }
+
+    function SetFilesNeeded(needed) {
+        if (!termload) { return }
+        termload.files(needed);
+    }
+
+    function SetStatusChanged(status) {
+        if (!termload) { return }
+        termload.status(status);
+    }
+</script>
+</body>
+</html>
